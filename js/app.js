@@ -5,42 +5,67 @@
        
         
         $(function() {
-            
 
-            //overlay menu for mobile
-            function overlayMenu() {
-              $('.menu-icon').on('click', function() {
-                $('.menu-icon').toggleClass('active');
-                $('.overlay-nav').toggleClass('active');
-                $('body').toggleClass("overflow");
-              });
-            }
-
-            overlayMenu();
-
-            //closing hamburger menu overlay
-            $('.nav-content ul li').on('click',function(event){
-                $('.menu-icon').removeClass('active');
-                $('.overlay-nav').removeClass('active');
-                $('body').removeClass("overflow");
+            $('.ids-portfolio--menu-btn').click(function(){
+                $('body').toggleClass('is-visible--menu');
             });
 
-            //adding + removing active class on menu overlay
-            $('ul li a').click(function(){
-                $('li a').removeClass("active");
+            //scroll-to section
+            $("#scroll-cta").click(function(){
+              $('html, body').animate({ scrollTop: $('#about').offset().top }, 'slow');
+            });
+
+
+            // Select all links with hashes
+            $('a[href*="#"]')
+                  // Remove links that don't actually link to anything
+                  .not('[href="#"]')
+                  .not('[href="#0"]')
+                  .click(function(event) {
+                    // On-page links
+                    $('body').removeClass('is-visible--menu');
+
+                    if (
+                      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+                      && 
+                      location.hostname == this.hostname
+                    ) {
+                      // Figure out element to scroll to
+                      var target = $(this.hash);
+                      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                      // Does a scroll target exist?
+                      if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                         var newScroll = target.offset().top;
+                        $('html, body').animate({
+                          scrollTop: newScroll
+                        }, 1000, function() {
+                          // Callback after animation
+                          // Must change focus!
+                          var $target = $(target);
+                          $target.focus();
+                          if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                          } else {
+                            //$target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                          };
+                        });
+                      }
+                    }
+            });
+
+            $('.ids-portfolio--nav a').click(function(){
+                $('a').removeClass("active");
                 $(this).addClass("active");
             });
 
+            var wow = new WOW({
+              boxClass: 'js-wow'
+            });
 
-            // $(".animated-line").typed({
-            //     strings: ["DESIGNER", "DEVELOPER", "CREATIVE"],
-            //     typeSpeed: 50,
-            //     backSpeed: 10,
-            //     backDelay: 2000,
-            //     showCursor: false,
-            //     loop: false
-            // });
-
+            wow.init();
             
         });
     })
