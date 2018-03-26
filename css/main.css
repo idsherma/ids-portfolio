@@ -224,6 +224,7 @@ menu
 }
 
 .animate-intro {
+  display: none;
   text-align: left;
   line-height: 1.667;
   padding-left: 25px;
@@ -376,7 +377,11 @@ portfolio
 **********/
 
 .latest-projects {
-  background-color: #eeeeee;
+  background-color: black;
+}
+
+.subheader--projects {
+  color: white;
 }
 
 /* clear fix */
@@ -403,6 +408,7 @@ portfolio
   padding-right: 0.5em;
   margin-bottom: 1em;
 }
+
 .grid-item:after {
   content: "";
   position: absolute;
@@ -443,7 +449,7 @@ portfolio
 footer
 **********/
 .ids-portfolio-footer {
-  background-color: black;
+  background-color: #363636;
 }
 
 .footer-wrapper {
@@ -471,8 +477,12 @@ footer
   color: white;
 }
 
+.footer-copy:hover {
+  color: #8F2D56;
+}
+
 .footer-icon-wrapper svg:hover {
-  color: red;
+  color: #8F2D56;
 }
 
 @media (min-width: 768px) {

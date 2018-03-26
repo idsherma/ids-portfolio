@@ -10,6 +10,8 @@
                 $('body').toggleClass('is-visible--menu');
             });
 
+            $('.animate-intro').fadeIn(1500);
+
             //scroll-to section
             $("#scroll-cta").click(function(){
               $('html, body').animate({ scrollTop: $('#about').offset().top }, 'slow');
